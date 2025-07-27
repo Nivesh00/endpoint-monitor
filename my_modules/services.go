@@ -1,32 +1,29 @@
 package my_modules
 
 import (
+	"errors"
+	"fmt"
 	"io"
-	"log/slog"
+	// "log/slog"
 	"net/http"
-	"strconv"
+	// "strconv"
 )
 
 
-func SendRequest(url *string) string {
+func SendRequest(url *string) (string, error) {
 
 	resp, err := http.Get(*url)
 	if (err != nil) {
-		slog.Warn("Response error for url", *url, slog.Any("err", err))
-		return ""
-
+		return "", err
 	} else if (resp.StatusCode != http.StatusOK) {
-		error_msg := "Status code for" + *url + "was" + strconv.Itoa(resp.StatusCode)
-		slog.Warn("HTTP statuscode error", slog.Any("err", error_msg))
-		return ""
+		err_msg := fmt.Sprintf("HTTP statuscode for url %s is not valid. Code was %d", *url, resp.StatusCode)
+		return "", errors.New(err_msg)
 
 	} 
 
 	bodyBytes, err := io.ReadAll(resp.Body)
-	if (err != nil) {
-		slog.Warn("Cannot read response body for URL", *url, slog.Any("err", err))
-		return ""
+	if (err != nil) { return "", err }
 
-	}
-	return string(bodyBytes)
+	resp_body := string(bodyBytes)
+	return resp_body, nil
 }

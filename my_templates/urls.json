@@ -4,11 +4,10 @@
             "endpoint": "https://prometheus.io",
             "responseFormat": "html",
             "contains": [
-                "<!DOCTYPE>",
-                ""
+                "<!DOCTYPE html>",
+                "<title>Prometheus - Monitoring system &amp; time series database</title>"
             ],
             "notContains": [
-                "error",
                 "<not-found>"
             ]
         }
