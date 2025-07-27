@@ -1,0 +1,16 @@
+{
+    "urls": [
+        {
+            "endpoint": "https://prometheus.io",
+            "responseFormat": "html",
+            "contains": [
+                "<!DOCTYPE>",
+                ""
+            ],
+            "notContains": [
+                "error",
+                "<not-found>"
+            ]
+        }
+    ]
+}
