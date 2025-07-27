@@ -1,16 +1,13 @@
 package main
 
 import (
-	// "fmt"
 	// "errors"
 	"encoding/json"
 	"fmt"
 	"io"
 	"os"
-
 	// "time"
 	"log/slog"
-
 	"github.com/Nivesh00/endpoint-monitor/my_modules"
 	"github.com/Nivesh00/endpoint-monitor/my_templates"
 )
